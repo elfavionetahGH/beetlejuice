@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: linear-gradient(180deg, #4B0082, #000000);
+        }
+        .caja_calculadora{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .calculator {
+            width: 50%;
+            border: 2px solid #ccc;
+            box-shadow: 0 0 10px white;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: black;
+            transition-duration: 0.7s;
+            
+        }
+        .calculator:hover{
+            transition-duration: 0.4s;
+            transform: scale(1.2);
+            margin: 15px 0;
+            border: solid 3px white;
+            box-shadow: 0 0 20px white;
+        }
+        #display {
+            color: white;
+            text-shadow: 0 0 10px #A9E200;
+            width: 90%;
+            height: 80px;
+            font-size: 24px;
+            text-align: right;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid white;
+            box-shadow: 0 0 20px #A9E200;
+            border-radius: 5px;
+            background-color: black;
+        }
+        .button {
+            width: 90%;
+            height: 70px;
+            font-size: 24px;
+            margin: 5px;
+            cursor: pointer;
+            color: white;
+            background-color: #000000;
+            box-shadow: 0 0 10px #A9E200;
+            text-shadow: 0 0 5px #A9E200;
+            border: solid 2px white;
+            border-radius: 5px;
+            transition-duration: 1s;
+        }
+        .button:hover{
+            transition-duration: 0.5s;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #bfff00;
+            border: solid 3px white;
+
+        }
+        .button:active {
+            transition-duration: 0.2s;
+            box-shadow: 0 0 10px #ff1900;
+        }
+        .row {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="caja_calculadora">
+            <div class="calculator">
+                <input type="text" id="display" disabled>
+                <div class="row">
+                    <button class="button" onclick="clearDisplay()">C</button>
+                    <button class="button" onclick="appendToDisplay('/')">/</button>
+                    <button class="button" onclick="appendToDisplay('*')">*</button>
+                    <button class="button" onclick="deleteLast()">←</button>
+                </div>
+                <div class="row">
+                    <button class="button" onclick="appendToDisplay('7')">7</button>
+                    <button class="button" onclick="appendToDisplay('8')">8</button>
+                    <button class="button" onclick="appendToDisplay('9')">9</button>
+                    <button class="button" onclick="appendToDisplay('-')">-</button>
+                </div>
+                <div class="row">
+                    <button class="button" onclick="appendToDisplay('4')">4</button>
+                    <button class="button" onclick="appendToDisplay('5')">5</button>
+                    <button class="button" onclick="appendToDisplay('6')">6</button>
+                    <button class="button" onclick="appendToDisplay('+')">+</button>
+                </div>
+                <div class="row">
+                    <button class="button" onclick="appendToDisplay('1')">1</button>
+                    <button class="button" onclick="appendToDisplay('2')">2</button>
+                    <button class="button" onclick="appendToDisplay('3')">3</button>
+                    <button class="button" onclick="calculateResult()">=</button>
+                </div>
+                <div class="row">
+                    <button class="button" onclick="appendToDisplay('0')">0</button>
+                    <button class="button" onclick="appendToDisplay('.')">.</button>
+                    <button class="button"><a href="calculadoraFantasma.html" download="calculadoraFantasma" target="_blank">Descargar</a></button>
+                </div>
+            </div>
+
+        </div>
+        
+    </section>
+</body>
+
+<script>
+    function appendToDisplay(value) {
+        document.getElementById('display').value += value;
+    }
+
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+
+
+    function deleteLast() {
+        var display = document.getElementById('display').value;
+        document.getElementById('display').value = display.slice(0, -1);
+    }
+
+
+    function calculateResult() {
+        var display = document.getElementById('display').value;
+        try {
+            document.getElementById('display').value = eval(display);
+        } catch (error) {
+            document.getElementById('display').value = 'Error';
+        }
+    }
+</script>
+</body>
+</html>
